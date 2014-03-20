@@ -40,7 +40,7 @@ fi
 #
 # Set default policies for INPUT, FORWARD and OUTPUT chains
 #
- echo -n "Setting defualt DROP rules..."
+ echo -n "Setting default DROP rules..."
  iptables -P INPUT DROP
  iptables -P FORWARD DROP
  iptables -P OUTPUT ACCEPT
@@ -71,7 +71,7 @@ fi
 #
 # Allow Management SSH 
 #
- echo -n "Alllowing MANAGEMENT connections..."
+ echo -n "Allowing MANAGEMENT connections..."
 # Default ***all interfaces*** for safety so you don't lock yourself out!
  iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
 # iptables -A INPUT -s xxx.xxx.xxx.xxx/xx -d xxx.xxx.xxx.xxx/32 -i eth0 -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
@@ -94,7 +94,7 @@ fi
 # iptables -t mangle -A PREROUTING -p udp -i ppp0 -s xxx.xxx.xxx.xxx -d xxx.xxx.xxx.xxx --dport 53 -j DROP
  printf "%-10s[ OK ]\n"
 #
-# Prerouting rules - If you want to modify packets before they hit the routing table (As you would for portforwarding)
+# Prerouting rules - If you want to modify packets before they hit the routing table (As you would for port forwarding)
 # Source and Destination NAT for incoming or outgoing connections
 # Note: that you can also modify the port
 #
@@ -108,7 +108,7 @@ fi
  printf "%-10s[ OK ]\n"
 #
 # Postrouting rules
-# Modifing packets once they have been routed, eg changing the source address
+# Modifying packets once they have been routed, eg changing the source address
 #
  echo -n "Adding POSTROUTING rules..."
 # NAT source address for incomming connection to internal IP (You might want to do this if you destination
@@ -150,4 +150,3 @@ fi
 # Uncomment the below to print firewall rule status once updated
 # iptables -L -vn && iptables -t nat -L -nv
 #
-

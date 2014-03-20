@@ -1,7 +1,9 @@
 manage-iptables.sh
 ==================
 
-A script to flush all rules from Iptables and add a new custom setup basic examples in the script support
+A script which flushes all rules from Iptables and applies a new custom setup with basic examples in the script.
+
+####Note: This script by default allows SSH on port 22 in and ICMP (ping) in to any interface for safety. 
 
 ## Examples:
 
@@ -10,15 +12,19 @@ A script to flush all rules from Iptables and add a new custom setup basic examp
 - Blocking/Dropping
 - Port forwarding
 - Inbound ports (such as port 22)  
-- Outbound nat (Masquerade)
+- Outbound NAT (Masquerade)
 - TCP/UDP/ICMP rules
 - Established & Related connection tracking
  
-Use this script to setup intial Linux Iptables routers/firewalls that either pass traffic to an internal network or initially configure a server/host firewall.
+Use this script to setup initial Linux Iptables routers/firewalls that either pass traffic to an internal network or initially configure a server/host firewall.
 
 ## Ubuntu users
 
-Ubuntu users will need to add the iptables script to /etc/network/if-pre-up.d/ & /etc/network/if-post-down.d/
+Ubuntu users will need to add the iptables-load & iptables-save scripts to /etc/network/if-pre-up.d/ & /etc/network/if-post-down.d/ respectively. 
+
+`sudo cp iptables-load /etc/network/if-pre-up.d/`
+
+`sudo cp iptables-save /etc/network/if-post-down.d/`
 
 Linux routing requirements
 --------------------------
