@@ -1,4 +1,5 @@
-# manage-iptables.sh
+manage-iptables.sh
+==================
 
 A script to flush all rules from Iptables and add a new custom setup basic examples in the script support
 
@@ -13,31 +14,36 @@ A script to flush all rules from Iptables and add a new custom setup basic examp
 - TCP/UDP/ICMP rules
 - Established & Related connection tracking
  
-Use this script to setup intial Linux Iptables firewalls that either pass traffic to an internal network or initially configure a single server/host etc.
+Use this script to setup intial Linux Iptables routers/firewalls that either pass traffic to an internal network or initially configure a server/host firewall.
 
 ## Ubuntu users
 
 Ubuntu users will need to add the iptables script to /etc/network/if-pre-up.d/ & /etc/network/if-post-down.d/
 
-## Linux as a firewall require ip /proc/sys/net/ipv4/ip_forward set to 1
+Linux routing requirements
+--------------------------
 
-### Check if its enabled
+### /proc/sys/net/ipv4/ip_forward must be set to 1 
 
-cat /proc/sys/net/ipv4/ip_forward
+Linux will not forward packets through its interfaces unless this option is set to 1. Be sure to make it **persistent**. 
+
+#### Check if its enabled
+
+`cat /proc/sys/net/ipv4/ip_forward`
 
 or
 
-sysctl net.ipv4.ip_forward
+`sysctl net.ipv4.ip_forward`
 
-### Enable without a reboot
+#### Enable without a reboot
 
-echo 1 > /proc/sys/net/ipv4/ip_forward
+`echo 1 > /proc/sys/net/ipv4/ip_forward`
 
 or 
 
-sysctl -w net.ipv4.ip_forward=1
+`sysctl -w net.ipv4.ip_forward=1`
 
-### Persistently enable 
+#### Persistently enable 
 
 Edit /etc/sysctl.conf and set; 
 
